@@ -4,7 +4,7 @@
 ### AnyKernel setup
 # begin properties
 properties() { '
-kernel.string=Meteoric kernel by HELLBOY017
+kernel.string=Spacewar KSU kernel by P.A.N.Z.
 do.devicecheck=0
 do.modules=0
 do.systemless=0

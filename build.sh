@@ -22,8 +22,6 @@ CLEANUP=true
 
 # Files
 IMAGE=$KERNEL_DIR/out/arch/arm64/boot/Image
-DTBO=$KERNEL_DIR/out/arch/arm64/boot/dtbo.img
-DTB=$KERNEL_DIR/out/arch/arm64/boot/dtb
 
 # Verbose Build
 VERBOSE=0
@@ -134,7 +132,7 @@ function choices() {
                 rm -rf $KERNEL_DIR/KernelSU
                 git submodule update --init --recursive KernelSU
             elif [ $(ls $KERNEL_DIR/KernelSU 2>/dev/null | wc -l) -ne 0 ]; then
-            	ZIPNAME=Spacewar-KernelSU
+            	ZIPNAME=Spacewar-KernelSU-0.9.5
             	KSU_CONFIG=ksu.config
             	if [ $(grep -c "KSU" arch/arm64/configs/$DEFCONFIG) -eq 0 ]; then
                     sed -i "s/-Spacewar/-Spacewar-$VERSION-KSU/" arch/arm64/configs/$DEFCONFIG
@@ -219,7 +217,7 @@ function compile() {
 
 function zipping() {
     # Copying kernel essentials
-    cp $IMAGE $DTBO $DTB $ANYKERNEL3_DIR
+    cp $IMAGE $ANYKERNEL3_DIR
 
     echo -e "$magenta***********************************************"
     echo    "                Time to zip up!                "
@@ -237,7 +235,7 @@ function zipping() {
 
     # Clean AnyKernel3 directory
     cd ..
-    rm -rf $ANYKERNEL3_DIR/Image $ANYKERNEL3_DIR/Image.* $ANYKERNEL3_DIR/dtbo.img $ANYKERNEL3_DIR/dtb
+    rm -rf $ANYKERNEL3_DIR/Image $ANYKERNEL3_DIR/Image.* 
 
     if [ $(find out/ -name $FINAL_ZIP | wc -l) -ne 0 ]; then
         echo -e "$orange***********************************************"
