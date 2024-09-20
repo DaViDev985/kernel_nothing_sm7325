@@ -96,7 +96,7 @@ function cloneTC() {
 # Export Variables
 function exports() {
     # Export KBUILD_COMPILER_STRING
-    export KBUILD_COMPILER_STRING=$($HOME/Spacewar/$COMPILER-clang/bin/clang --version | head -n 1 | perl -pe 's/\(http.*?\)//gs' | sed -e 's/  */ /g' -e 's/[[:space:]]*$//')
+    export KBUILD_COMPILER_STRING=$($HOME/$COMPILER-clang/bin/clang --version | head -n 1 | perl -pe 's/\(http.*?\)//gs' | sed -e 's/  */ /g' -e 's/[[:space:]]*$//')
 
     # Export ARCH and SUBARCH
     export ARCH=arm64
