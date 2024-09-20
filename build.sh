@@ -62,31 +62,31 @@ function cloneTC() {
     case $COMPILER in
         proton)
             if [ $COMPILER_CLEANUP = true ]; then
-                rm -rf ~/Spacewar/neutron-clang
+                rm -rf ~/neutron-clang
             fi
-            if [ $(ls $HOME/Spacewar/proton-clang 2>/dev/null | wc -l) -ne 0 ]; then
-                PATH="$HOME/Spacewar/proton-clang/bin:$PATH"
+            if [ $(ls $HOME/proton-clang 2>/dev/null | wc -l) -ne 0 ]; then
+                PATH="$HOME/proton-clang/bin:$PATH"
             else
-                git clone --depth=1  https://github.com/kdrag0n/proton-clang.git ~/Spacewar/proton-clang
-                PATH="$HOME/Spacewar/proton-clang/bin:$PATH"
+                git clone --depth=1  https://github.com/kdrag0n/proton-clang.git ~/proton-clang
+                PATH="$HOME/proton-clang/bin:$PATH"
             fi
             ;;
         neutron)
             if [ $COMPILER_CLEANUP = true ]; then
-                rm -rf ~/Spacewar/proton-clang
+                rm -rf ~/proton-clang
             fi
-            if [ $(ls $HOME/Spacewar/neutron-clang/bin 2>/dev/null | wc -l ) -ne 0 ] && 
-               [ $(find $HOME/Spacewar/neutron-clang -name *.tar.zst | wc -l) -eq 0 ]; then
-                PATH="$HOME/Spacewar/neutron-clang/bin:$PATH"
+            if [ $(ls $HOME/neutron-clang/bin 2>/dev/null | wc -l ) -ne 0 ] && 
+               [ $(find $HOME/neutron-clang -name *.tar.zst | wc -l) -eq 0 ]; then
+                PATH="$HOME/neutron-clang/bin:$PATH"
             else
-                rm -rf ~/Spacewar/neutron-clang
-                mkdir -p ~/Spacewar/neutron-clang
-                cd ~/Spacewar/neutron-clang || exit
+                rm -rf ~/neutron-clang
+                mkdir -p ~/neutron-clang
+                cd ~/neutron-clang || exit
                 curl -LO "https://raw.githubusercontent.com/Neutron-Toolchains/antman/main/antman"
                 chmod a+x antman
                 ./antman -S
                 cd - || exit
-                PATH="$HOME/Spacewar/neutron-clang/bin:$PATH"
+                PATH="$HOME/neutron-clang/bin:$PATH"
             fi
             ;;
     esac
